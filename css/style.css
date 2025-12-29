@@ -1,32 +1,39 @@
-
-
 /* !===========  theme customize  =========== */
-[data-theme="dark"]{
-    --main-color:#272b30;
-    --second-color:#32383e;
-    --color-text:#fff;
-    --btn-main-color:#272729;
+[data-theme="dark"] {
+    --main-color: #272b30;
+    --second-color: #32383e;
+    --color-text: #fff;
+    --btn-main-color: #272729;
 }
-[data-theme="light"]{
-    --main-color:#eee;
-    --second-color:#909396;
-    --color-text:#000;
-    --btn-main-color:#414550;
+
+[data-theme="light"] {
+    --main-color: #eee;
+    --second-color: #909396;
+    --color-text: #000;
+    --btn-main-color: #414550;
 }
+
 /* --------------- */
-body{
+body {
     background-color: var(--main-color);
     font-family: "Comfortaa", sans-serif;
 }
-h1,h2,h3,h4,h5,h6{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Nerko One", cursive;
-    
+
 }
+
 /* font-family: "Comfortaa", sans-serif; */
 /* font-family: "Nerko One", cursive; */
 
 /* ==================== */
-.change-theme{
+.change-theme {
     position: fixed;
     bottom: 4%;
     right: 4%;
@@ -37,11 +44,12 @@ h1,h2,h3,h4,h5,h6{
 }
 
 /* !=========== start register-section  =========== */
-.register-section{
+.register-section {
     min-height: 80vh;
     margin-top: 10vh;
 }
-.register-section .img{
+
+.register-section .img {
     background-image: url("../images/register.jpg");
     background-position: center;
     background-size: cover;
@@ -49,38 +57,44 @@ h1,h2,h3,h4,h5,h6{
     /* must give it height => to be shown :) */
     height: 100%;
 }
-.inputs{
+
+.inputs {
     color: var(--color-text);
 }
+
 /* ================= */
 /* general */
-.no-arrows::-webkit-inner-spin-button , 
-.no-arrows::-webkit-outer-spin-button{
+.no-arrows::-webkit-inner-spin-button,
+.no-arrows::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-.no-arrows{
+
+.no-arrows {
     -moz-appearance: textfield;
     appearance: textfield;
 
 }
 
-.inputs input::placeholder{
+.inputs input::placeholder {
     color: var(--color-text);
     font-weight: bolder;
 }
-.inputs input{
+
+.inputs input {
     margin-top: 13px;
     background-color: var(--main-color);
     color: var(--color-text);
     border: none;
 }
-.inputs .form-control:focus{
+
+.inputs .form-control:focus {
     color: var(--color-text);
     background-color: var(--main-color);
 
 }
-.inputs button{
+
+.inputs button {
     background-color: var(--second-color);
     color: var(--color-text);
     font-weight: bolder;
@@ -88,30 +102,36 @@ h1,h2,h3,h4,h5,h6{
     margin-top: 13px;
     transition: all .5s;
 }
-.inputs button:hover{
+
+.inputs button:hover {
     background-color: var(--btn-main-color);
     background-color: rgb(56, 56, 56);
 }
+
 /* ----------- */
-.inputs .go{
-    color:var(--second-color) ;
+.inputs .go {
+    color: var(--second-color);
     text-decoration: none;
     transition: opacity .5s;
 }
-.inputs .go:hover{
+
+.inputs .go:hover {
     opacity: .5;
 }
-.inputs .go i{
+
+.inputs .go i {
     margin-left: -3px;
 }
+
 /* !=========== end register-section  =========== */
 /* ?=========== start LogIn-section  =========== */
 
-.login-section{
+.login-section {
     min-height: 60vh;
     margin-top: 20vh;
 }
-.login-section .img{
+
+.login-section .img {
     background-image: url("../images/login.jpg");
     background-position: center;
     background-size: cover;
@@ -119,19 +139,22 @@ h1,h2,h3,h4,h5,h6{
     /* must give it height => to be shown :) */
     height: 100%;
 }
+
 /* ?=========== end LogIn-section  =========== */
 /* !=========== start Home-section  =========== */
 /* !=========== header  =========== */
 /* general */
-body{
+body {
     height: 3000px;
 }
+
 /* ------------------------- */
 /* Navbar toggler button styling */
 .navbar-toggler {
     background-color: var(--second-color);
     border-color: var(--second-color);
 }
+
 /* Change the hamburger icon color based on theme */
 [data-theme="dark"] .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
@@ -140,39 +163,64 @@ body{
 [data-theme="light"] .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 0, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
+
 /* ------------------------- */
 header nav {
     background-color: var(--main-color);
     font-family: "Nerko One", cursive;
     font-weight: 200;
 }
-header nav a{
-    color: var(--color-text)!important;
+
+header nav a {
+    color: var(--color-text) !important;
     font-size: 40px;
 
-    
+
 }
-header nav ul span{
-    color: var(--color-text)!important;
+
+header nav ul span {
+    color: var(--color-text) !important;
 
 
 }
-header nav .img{
+
+header nav .img {
     width: 50px;
 }
-header nav .logo-title{
+
+header nav .logo-title {
     font-size: 40px;
 }
+
 /* --------- */
-header nav .nav-item .nav-link{
-    transition: color .6s ;
+header nav .nav-item .nav-link {
+    transition: color .6s;
 }
-header nav .nav-item .nav-link:hover , 
-header nav .nav-item .nav-link.active{
+
+header nav .nav-item .nav-link:hover,
+header nav .nav-item .nav-link.active {
     color: #09c !important;
 }
 
+/* !=========== main  =========== */
 
+.games-section {
+    color: var(--color-text);
+    padding-top: 100px;
+
+}
+
+.games-section h1 {
+    font-family: "Nerko One", cursive;
+
+}
+.games-section .card{
+    background-color: var(--main-color);
+    color: var(--color-text);
+}
+.games-section .card.shadow{
+        box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.15) !important;
+}
 
 
 
@@ -202,12 +250,8 @@ header nav .nav-item .nav-link.active{
 
 /* !===========  media query  =========== */
 
-@media (max-width:992px){
-    .register-section .col-lg-5{
+@media (max-width:992px) {
+    .register-section .col-lg-5 {
         display: none;
     }
 }
-
-
-
-
