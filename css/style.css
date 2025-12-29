@@ -1,0 +1,115 @@
+
+
+/* !===========  theme customize  =========== */
+[data-theme="dark"]{
+    --main-color:#272b30;
+    --second-color:#32383e;
+    --color-text:#fff;
+    --btn-main-color:#272729;
+}
+[data-theme="light"]{
+    --main-color:#eee;
+    --second-color:#909396;
+    --color-text:#000;
+    --btn-main-color:#414550;
+}
+/* --------------- */
+body{
+    background-color: var(--main-color);
+    font-family: "Comfortaa", sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: "Nerko One", cursive;
+    
+}
+/* font-family: "Comfortaa", sans-serif; */
+/* font-family: "Nerko One", cursive; */
+/* !=========== start register-section  =========== */
+.register-section{
+    min-height: 80vh;
+    margin-top: 10vh;
+}
+.register-section .img{
+    background-image: url("../images/register.jpg");
+    background-position: center;
+    background-size: cover;
+
+    /* must give it height => to be shown :) */
+    height: 100%;
+}
+.inputs{
+    color: var(--color-text);
+}
+/* ================= */
+/* general */
+.no-arrows::-webkit-inner-spin-button , 
+.no-arrows::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+.no-arrows{
+    -moz-appearance: textfield;
+    appearance: textfield;
+
+}
+
+.inputs input::placeholder{
+    color: var(--color-text);
+    font-weight: bolder;
+}
+.inputs input{
+    margin-top: 13px;
+    background-color: var(--main-color);
+    color: var(--color-text);
+    border: none;
+}
+.inputs .form-control:focus{
+    color: var(--color-text);
+    background-color: var(--main-color);
+
+}
+.inputs button{
+    background-color: var(--second-color);
+    color: var(--color-text);
+    font-weight: bolder;
+    border: none;
+    margin-top: 13px;
+    transition: all .5s;
+}
+.inputs button:hover{
+    background-color: var(--btn-main-color);
+    background-color: rgb(56, 56, 56);
+}
+/* ----------- */
+.inputs .go{
+    color:var(--second-color) ;
+    text-decoration: none;
+    transition: opacity .5s;
+}
+.inputs .go:hover{
+    opacity: .5;
+}
+
+/* !=========== end register-section  =========== */
+
+
+
+
+
+
+
+
+
+
+
+/* !===========  media query  =========== */
+
+@media (max-width:922px){
+    .register-section .col-lg-5{
+        display: none;
+    }
+}
+
+
+
+
