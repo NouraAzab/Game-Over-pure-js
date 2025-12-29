@@ -24,6 +24,18 @@ h1,h2,h3,h4,h5,h6{
 }
 /* font-family: "Comfortaa", sans-serif; */
 /* font-family: "Nerko One", cursive; */
+
+/* ==================== */
+.change-theme{
+    position: fixed;
+    bottom: 4%;
+    right: 4%;
+    /* margin: 20px; */
+    cursor: pointer;
+    font-size: 25px;
+
+}
+
 /* !=========== start register-section  =========== */
 .register-section{
     min-height: 80vh;
@@ -89,8 +101,44 @@ h1,h2,h3,h4,h5,h6{
 .inputs .go:hover{
     opacity: .5;
 }
-
+.inputs .go i{
+    margin-left: -3px;
+}
 /* !=========== end register-section  =========== */
+/* ?=========== start LogIn-section  =========== */
+
+.login-section{
+    min-height: 60vh;
+    margin-top: 20vh;
+}
+.login-section .img{
+    background-image: url("../images/login.jpg");
+    background-position: center;
+    background-size: cover;
+
+    /* must give it height => to be shown :) */
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ?=========== end LogIn-section  =========== */
 
 
 
