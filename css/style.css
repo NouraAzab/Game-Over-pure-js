@@ -37,6 +37,7 @@ h6 {
     position: fixed;
     bottom: 4%;
     right: 4%;
+    z-index: 9999;
     /* margin: 20px; */
     cursor: pointer;
     font-size: 25px;
@@ -145,7 +146,7 @@ h6 {
 /* !=========== header  =========== */
 /* general */
 body {
-    height: 3000px;
+    /* height: 3000px; */
 }
 
 /* ------------------------- */
@@ -222,21 +223,76 @@ header nav .nav-item .nav-link.active {
         box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.15) !important;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* !=========== end Home-section  =========== */
+/* ?=========== start details-section  =========== */
+.details-section{
+    position: relative;/* For safety only*/
+    min-height: 100vh;
+    background-image: url("../images/login.jpg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: var(--main-color);
+}
+.details-section .overlay{
+    /* position: absolute; */
+    /* inset: 0; */
+    min-height: 100vh;
+    background-color: rgba(255, 255, 255, 0.13);
+    /* background-color: rgba(0, 0, 0, 0.233); */
+    padding-top: 120px;
+
+}
+
+.details-section .img{
+    /* height: 300px; */
+    min-width: 350px;
+    margin-bottom:20px ;
+
+}
+/* =============== */
+.details-section .content{
+   color: var(--color-text)  ;
+   font-family: "Nerko One", cursive;
+   font-size: 20px;
+
+
+
+}
+.details-section .content p{
+    font-family: "Comfortaa", sans-serif;
+
+
+}
+.details-section .content a{
+    color: var(--color-text);
+    /* text-decoration: none; */
+}
+.details-section .content .breadcrumb-item.active{
+    color: #09c;
+}
+.details-section .breadcrumb-item+.breadcrumb-item::before{
+    color: var(--color-text);
+}
+
+/* =============== */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ?=========== end details-section  =========== */
 
 
 
