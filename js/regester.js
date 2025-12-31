@@ -15,7 +15,7 @@ let isValid = false;
 formElement.addEventListener("submit", function (event) {
     event.preventDefault(); // prevent reloading of the form ^^
 
-    if(isValid){
+    if (isValid) {
         setForm();
     }
 });
@@ -51,9 +51,8 @@ function setForm() {
         "age": inputs[4].value
 
     }
-    console.log("yoe set");
     console.log(user);
-    // regestir(user);
+    
 }
 
 // ================> validation <=========================
