@@ -1,7 +1,11 @@
-
+/*
+todo js: try [register] and [login] with using localstorage not API :)
+*/
 // ?================> Global <=========================
 
-const inputs = document.querySelectorAll("input");//[input[0] , input[1] , .....]
+const inputs = document.querySelectorAll("input");//[input[0] , input[1] , .....]  // nodelist : not an array
+//1- need to convert inputs -> array -> to use the array methods i need :)
+const inputsArray = Array.from(inputs);
 const formElement = document.querySelector("form");
 let isValid = false;
 
@@ -20,24 +24,12 @@ formElement.addEventListener("submit", function (event) {
     }
 });
 formElement.addEventListener("input", function (e) {
-    //as long as the first validation become true  , will call the next validate [not good]
-    // if (GeneralValidate(inputs[0]) &&
-    //     GeneralValidate(inputs[1]) &&
-    //     GeneralValidate(inputs[2]) &&
-    //     GeneralValidate(inputs[3]) &&
-    //     GeneralValidate(inputs[4])) {
-    // }
-    // to only trigger the validation of what i write in  ^_^
-    if (GeneralValidate(e.target) && //fname
-        GeneralValidate(e.target) && //lname
-        GeneralValidate(e.target) && //email
-        GeneralValidate(e.target) && //password
-        GeneralValidate(e.target)) { // age
 
-        isValid = true;
-    }
-    else
-        isValid = false;
+    generalValidate(e.target);//one time for each input i write in + the [invalid-feedback] msg will appear f0r the input i write in onlyyyyy :)
+
+    //for check [all inputs] are validated or no
+    // isValid = Array.from(inputs).every((input)=>generalValidate(input));//wrong .. the call will happen else
+    isValid = inputsArray.every((input) => input.classList.contains("is-valid"));// generalValidate will be called once above only 
 });
 
 
@@ -52,33 +44,72 @@ function setForm() {
 
     }
     console.log(user);
-    
+    register(user);
+
+}
+async function register(userData) {
+
+    const response = await fetch(`https://movies-api.routemisr.com/signup`,
+        {
+            method: "post",
+            body: JSON.stringify(userData),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        });
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.message === "success") {
+
+            location.href = "./index.html";//login page 
+        }
+        else {
+            document.getElementById("register-msg").innerHTML = `${data.errors?.email?.message}` || `registration failed :(`//todo depend on api
+        }
+    }
+    else{
+            document.getElementById("register-msg").innerHTML = `server error`;
+    }
+
 }
 
 // ================> validation <=========================
-function GeneralValidate(input) {
-    const Regexes = {
-        "fname": /^(?:[a-zA-Z0-9&$#_]|[\u0600-\u06FF]){2,50}$/, //spaces not allowed 
-        "lname": /^(?:[a-zA-Z0-9&$#_]|[\u0600-\u06FF]){2,50}$/, //spaces not allowed 
-        "email": /^[a-zA-Z0-9.-_]+@[a-zA-Z]+\.com$/, //nora.azab135@gmail.com
-        "password": /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,//Minimum eight characters, at least one letter and one number:
-        "age": /^(?:[1-7][0-9]|80)$/,//[10-80] allowed only this range ^^        =>   [10:79] & 80
-    }
+const Regexes = {
+    "fname": /^(?:[a-zA-Z0-9&$#_]|[\u0600-\u06FF]){2,50}$/, //spaces not allowed 
+    "lname": /^(?:[a-zA-Z0-9&$#_]|[\u0600-\u06FF]){2,50}$/, //spaces not allowed 
+    "email": /^[a-zA-Z0-9.-_]+@[a-zA-Z]+\.com$/, //nora.azab135@gmail.com
+    "password": /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,//Minimum eight characters, at least one letter and one number:
+    "age": /^(?:[1-7][0-9]|80)$/,//[10-80] allowed only this range ^^        =>   [10:79] & 80
+}
+function generalValidate(input) {
 
     // console.log(input.getAttribute("id"));
     const regexName = input.getAttribute("id");
 
+    // console.log(input.value);
+    // console.count("validate called")
 
-    if (Regexes[regexName].test(input.value)) {
-        input.classList.remove("is-invalid");
-        input.classList.add("is-valid");
-        return true;
+    // ===============
+    //// if (Regexes[regexName].test(input.value.trim())) {
+    ////     input.classList.remove("is-invalid");
+    ////     input.classList.add("is-valid");
+    ////     return true;
 
-    }
-    else {
-        input.classList.remove("is-valid");
-        input.classList.add("is-invalid");
-        return false;
+    //// }
+    //// else {
+    ////     input.classList.remove("is-valid");
+    ////     input.classList.add("is-invalid");
+    ////     return false;
 
-    }
+    //// }
+    // ===============
+    // will make it cleaner :)
+    const isValidated = Regexes[regexName].test(input.value.trim());// T|F
+    input.classList.toggle("is-invalid" ,!isValidated ); // if validated -> by force delete (is-invalid , false)
+    input.classList.toggle("is-valid" , isValidated);
+
+    return isValidated;
+
 }
