@@ -47,38 +47,55 @@ function setForm() {
 
 }
 async function login(userData) {
+    showLoader();
+    const option = {
+        method: "post",
+        body: JSON.stringify(userData),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
 
-    // const response = await fetch(`https://movies-api.routemisr.com/signin`,
-    const response = await fetch(`https://sticky-note-fe.vercel.app/signin`,
-        {
-            method: "post",
-            body: JSON.stringify(userData),
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        });
-
-    if (response.ok) {
+    try {
+        const response = await fetch(`https://ecommerce.routemisr.com/api/v1/auth/signin`, option);
         const data = await response.json();
-        if (data.message === "success") {
-            localStorage.setItem(`user-token` , data.token);
-            location.href = "./home.html";//home page 
+
+        if ( data.statusMsg !== "fail" || data.message === "success") {
+            localStorage.setItem('user-token', data.token);
+            location.href = "./home.html";
         }
         else {
-            document.getElementById("login-msg").innerHTML = `${data.message}` || `login failed :(`//todo depend on api
+            showError(data.message || 'Login failed');
         }
+
+    } catch (error) {
+        showError('Network error');
+        console.error(error);
+    } finally {
+        hideLoader(); // always hides
     }
-    else{
-            document.getElementById("login-msg").innerHTML = `server error`;
-    }
+}
+
+function showError(message) {
+    document.getElementById("login-msg").innerHTML = message;
+}
+
+// ===================
+function showLoader() {
+    document.querySelector(".loading").classList.remove("d-none");
+
+}
+function hideLoader() {
+    document.querySelector(".loading").classList.add("d-none");
 
 }
 
 // ================> validation <=========================
 const Regexes = {
     "email": /^[a-zA-Z0-9.-_]+@[a-zA-Z]+\.com$/, //nora.azab135@gmail.com
-    "password": /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,//Minimum eight characters, at least one letter and one number
+    "password": /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z@#$%&-_\d]{8,}$/,//Minimum eight characters, at least one letter and one number:
+
 }
 function generalValidate(input) {
 
@@ -90,8 +107,13 @@ function generalValidate(input) {
 
     //const .... because  new execution context will each timewill be created :)
     const isValidated = Regexes[regexName].test(input.value.trim());// T|F
-    input.classList.toggle("is-invalid" ,!isValidated ); // if validated -> by force delete (is-invalid , false)
-    input.classList.toggle("is-valid" , isValidated);
+    if (regexName === "password") {
+        const msgInvalid = `invalid-msg-${regexName}`;
+        document.getElementById(`${msgInvalid}`).classList.toggle("d-none", isValidated)
+
+    }
+    input.classList.toggle("is-invalid", !isValidated); // if validated -> by force delete (is-invalid , false)
+    input.classList.toggle("is-valid", isValidated);
 
     return isValidated;
 

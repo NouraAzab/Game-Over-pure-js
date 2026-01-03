@@ -36,11 +36,11 @@ formElement.addEventListener("input", function (e) {
 // !================> functions <=========================
 function setForm() {
     const user = {
-        "first_name": inputs[0].value,
-        "last_name": inputs[1].value,
-        "email": inputs[2].value,
-        "password": inputs[3].value,
-        "age": inputs[4].value
+        "name": inputs[0].value,
+        "email": inputs[1].value,
+        "password": inputs[2].value,
+        "rePassword": inputs[3].value,
+        "phone": inputs[4].value
 
     }
     console.log(user);
@@ -49,7 +49,8 @@ function setForm() {
 }
 async function register(userData) {
 
-    const response = await fetch(`https://movies-api.routemisr.com/signup`,
+    showLoader();
+    const response = await fetch(`https://ecommerce.routemisr.com/api/v1/auth/signup`,
         {
             method: "post",
             body: JSON.stringify(userData),
@@ -65,23 +66,31 @@ async function register(userData) {
 
             location.href = "./index.html";//login page 
         }
-        else {
-            document.getElementById("register-msg").innerHTML = `${data.errors?.email?.message}` || `registration failed :(`//todo depend on api
-        }
     }
     else{
-            document.getElementById("register-msg").innerHTML = `server error`;
+            document.getElementById("register-msg").innerHTML = `Account Already Exists`;
     }
+    hideLoader();
+
+}
+function showLoader(){
+    document.querySelector(".loading").classList.remove("d-none");
+
+}
+function hideLoader(){
+    document.querySelector(".loading").classList.add("d-none");
 
 }
 
 // ================> validation <=========================
 const Regexes = {
-    "fname": /^(?:[a-zA-Z0-9&$#_]|[\u0600-\u06FF]){2,50}$/, //spaces not allowed 
-    "lname": /^(?:[a-zA-Z0-9&$#_]|[\u0600-\u06FF]){2,50}$/, //spaces not allowed 
+    "name": /^(?:[a-zA-Z0-9&$#\s_]|[\u0600-\u06FF]){2,50}$/, 
     "email": /^[a-zA-Z0-9.-_]+@[a-zA-Z]+\.com$/, //nora.azab135@gmail.com
-    "password": /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,//Minimum eight characters, at least one letter and one number:
-    "age": /^(?:[1-7][0-9]|80)$/,//[10-80] allowed only this range ^^        =>   [10:79] & 80
+    "password": /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z@#$%&-_\d]{8,}$/,//Minimum eight characters, at least one letter and one number:
+    "repassword": /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z@#$%&-_\d]{8,}$/,//Minimum eight characters, at least one letter and one number:
+    // "age": /^(?:[1-7][0-9]|80)$/,//[10-80] allowed only this range ^^        =>   [10:79] & 80
+    "phone" : /^((\+20)?|0)(?:10|11|12|15)[0-9]{8}$/
+
 }
 function generalValidate(input) {
 
@@ -107,6 +116,13 @@ function generalValidate(input) {
     // ===============
     // will make it cleaner :)
     const isValidated = Regexes[regexName].test(input.value.trim());// T|F
+
+
+    if(regexName === "password" || regexName === "repassword"){
+        const msgInvalid = `invalid-msg-${regexName}`;
+        document.getElementById(`${msgInvalid}`).classList.toggle("d-none" , isValidated)
+
+    }
     input.classList.toggle("is-invalid" ,!isValidated ); // if validated -> by force delete (is-invalid , false)
     input.classList.toggle("is-valid" , isValidated);
 

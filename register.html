@@ -48,29 +48,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div>
-                                        <input type="text" id="fname" placeholder="First Name" class="form-control">
+                                        <input type="text" id="name" placeholder="Full Name" class="form-control">
                                         <!-- <p class="invalid-feedback text-danger  p-2 rounded-2 alert alert-danger">is required</p> -->
                                         <ul class="invalid-feedback text-danger py-1 mb-0  alert alert-danger">
                                             <li>is required</li>
                                             <li>The name must be 2-50 characters long and can include letters, numbers,
-                                                or symbols (&, $, #, _)</li>
+                                                or symbols (&, $, #, _) and spaces</li>
                                         </ul>
                                     </div>
 
                                 </div>
                                 <div class="col-md-6">
-                                    <div>
-                                        <input type="text" id="lname" placeholder="Last Name" class="form-control">
-                                        <ul class="invalid-feedback text-danger py-1 mb-0  alert alert-danger">
-                                            <li>is required</li>
-                                            <li>The name must be 2-50 characters long and can include letters, numbers,
-                                                or symbols (&, $, #, _)</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row row-cols-sm-1">
-                                <div class="col">
                                     <div>
                                         <input type="email" id="email" placeholder="Email Address" class="form-control">
                                         <ul class="invalid-feedback text-danger py-1 mb-0  alert alert-danger">
@@ -80,11 +68,21 @@
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row row-cols-1">
                                 <div class="col">
                                     <div>
-                                        <input type="password" id="password" placeholder="Password"
-                                            class="form-control">
-                                        <ul class="invalid-feedback text-danger py-1 mb-0  alert alert-danger">
+                                        <div class="input-group d-flex flex-nowrap align-items-center">
+                                            <input type="password" id="password" placeholder="Password"
+                                                class="form-control">
+
+                                            <span class="input-group-text d-none mt-2"><i
+                                                    class="fa-solid fa-eye-slash"></i></span>
+                                            <span class="input-group-text mt-2"><i class="fa-solid fa-eye"></i></span>
+
+                                        </div>
+                                        <ul id="invalid-msg-password"
+                                            class=" text-danger py-1 mb-0  alert alert-danger d-none">
                                             <li>is required</li>
                                             <li>Minimum eight characters, at least one letter and one number</li>
                                         </ul>
@@ -92,19 +90,37 @@
                                 </div>
                                 <div class="col">
                                     <div>
-                                        <input type="number" id="age" placeholder="Enter Age"
-                                            class="form-control no-arrows">
+                                        <div class="input-group d-flex flex-nowrap align-items-center">
+                                            <input type="password" id="repassword" placeholder="Re-Password"
+                                                class="form-control">
+
+                                            <span class="input-group-text d-none mt-2"><i
+                                                    class="fa-solid fa-eye-slash"></i></span>
+                                            <span class="input-group-text mt-2"><i class="fa-solid fa-eye"></i></span>
+
+                                        </div>
+                                        <ul id="invalid-msg-repassword"
+                                            class=" text-danger py-1 mb-0  alert alert-danger d-none">
+                                            <li>is required</li>
+                                            <li>Minimum eight characters, at least one letter and one number</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div>
+                                        <input type="tel" id="phone" placeholder="Enter phone" class="form-control ">
                                         <ul class="invalid-feedback text-danger py-1 mb-0  alert alert-danger">
                                             <li>is required</li>
-                                            <li>age is allowed between [10 - 80] only :)</li>
+                                            <li>Egyptian numbers are only allowed, start with (010 | 011 | 012 | 015) :)
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <button type="submit" class=" w-100 text-center p-2 rounded-2"
                                         id="Register-btn">Register</button>
-                                        <p class="register-msg"></p>
-                                    
+                                    <p id="register-msg" class="text-danger text-center fw-bold"></p>
+
                                 </div>
                                 <div class="col">
                                     <div class="d-flex p-2 align-items-center justify-content-center gap-2 small mt-2">
@@ -123,6 +139,9 @@
                 </div>
             </div>
 
+        </div>
+        <div class="loading d-none">
+            <span class="loader"></span>
         </div>
 
     </section>
