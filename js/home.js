@@ -1,5 +1,6 @@
 //todo : will add the logic of the nav => to details.html in script below
 //todo : make card-body flex-grow : 1  instead of [style="min-height: 350px !important;"]
+//todo: what if i need to use he header in many pages :)
 
 
 // ?================> Global <=========================
@@ -91,7 +92,7 @@ function displayGames() {
     for (let i = 0; i < gamesData.length; ++i) {
         box += `
         <div class="col">
-                        <div class="card  shadow">
+                        <div onclick="showGameDetails(${gamesData[i].id});" class="card  shadow" style="cursor:pointer">
                             <!-- todo js    src , alt -->
                             <div class="card-body" style="min-height: 350px !important;">
                                 <img src="${gamesData[i].thumbnail}" class="card-img-top" alt="${gamesData[i].title}">
@@ -126,6 +127,15 @@ function showLoader(){
 function hideLoader(){
     document.querySelector(".loading").classList.add("d-none");
 
+}
+// =====================
+function showGameDetails(id){
+    location.href = `./details.html?id=${id}`;
+
+    // i need to send the id during i open a new page 
+    //1-localstorage  -> but it's not preferred because when i leave my account ,and open with a new browser r with a new account -> id will be lost
+    //2- send it as a query string with the href of the new page ^^ [recommended]
+    
 
 }
 // ================> validation <=========================
